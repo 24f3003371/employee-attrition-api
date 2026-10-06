@@ -1,10 +1,14 @@
-
 from fastapi import FastAPI
-import joblib
-import pandas as pd
 
 app = FastAPI()
 
-model = joblib.load("employee_attrition_model.pkl")
+@app.get("/")
+def home():
+    return {"message": "Employee Attrition API is running"}
 
-
+@app.get("/health")
+def health():
+    return {
+        "status": "healthy",
+        "model_loaded": False
+    }
